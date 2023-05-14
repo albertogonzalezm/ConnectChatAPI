@@ -14,6 +14,10 @@ const UserSchema = sequelize.define('users', {
     password: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    role: {
+        type: DataTypes.STRING,
+        defaultValue: 'user'
     }
 }, {
     freezeTableName: true

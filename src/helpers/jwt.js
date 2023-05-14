@@ -1,10 +1,10 @@
 import { config } from "dotenv";
 config()
-import { sign, verify } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const secretKey = process.env.SECRET_KEY;
 export const genToken = (payload) => {
-    return sign({
+    return jwt.sign({
         id: payload.id,
         role: payload.role
     }, secretKey, {
@@ -14,7 +14,7 @@ export const genToken = (payload) => {
 
 export const verifyToken = (token) => {
     try {
-        return verify(token, secretKey);
+        return jwt.verify(token, secretKey);
     } catch (error) {
         return null
     }

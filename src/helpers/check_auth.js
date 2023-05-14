@@ -8,7 +8,6 @@ export const checkAuth = async (authorization) => {
         return error;
     }
 }
-
 export const checkRole = (roles) = async (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ').pop();

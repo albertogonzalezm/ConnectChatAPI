@@ -1,6 +1,8 @@
-import { DataTypes } from "sequelize";
+import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
+
+// TODO: fix message type!!!
 const MessageSchema = sequelize.define('messages', {
     id: {
         type: DataTypes.INTEGER,
@@ -8,8 +10,9 @@ const MessageSchema = sequelize.define('messages', {
         primaryKey: true
     },
     message: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.ARRAY(DataTypes.JSONB),
+        allowNull: false,
+        defaultValue: []
     }
 }, {
     freezeTableName: true

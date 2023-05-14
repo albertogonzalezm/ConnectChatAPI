@@ -8,6 +8,7 @@ import * as url from 'url'
 import sequelize from './config/database.js'
 import UserSchema from './models/users.js'
 import MessageSchema from './models/messages.js'
+import authRoutes from './routes/auth.routes.js'
 
 const port = process.env.PORT
 const app = express()
@@ -24,6 +25,8 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + 'public/index.html')
 })
 
+app.use('/auth', authRoutes)
+
 io.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
         io.emit('chat message', msg);
@@ -33,7 +36,8 @@ io.on('connection', (socket) => {
 server.listen(port, async () => {
     console.log('Server is listening on http://localhost:3000');
     try {
-        await sequelize.sync();
+        await sequelize.sync({ alter: true });
+        // await sequelize.drop()
         console.log("All models were synchronized successfully.");
     } catch (error) {
         console.error('Unable to connect to the database:', error);
