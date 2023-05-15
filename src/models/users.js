@@ -1,26 +1,21 @@
-import { DataTypes } from "sequelize";
-import sequelize from '../config/database.js';
+import { Schema, model } from "mongoose";
 
-const UserSchema = sequelize.define('users', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
+const userSchema = new Schema({
     username: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: String,
+        required: true
     },
     password: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: String,
+        required: true
     },
     role: {
-        type: DataTypes.STRING,
-        defaultValue: 'user'
+        type: String,
+        default: 'user'
     }
 }, {
-    freezeTableName: true
+    timestamps: true,
+    versionKey: false
 });
 
-export default UserSchema;
+export default model('users', userSchema);

@@ -7,8 +7,8 @@ export const signup = async (req, res) => {
         if (password !== confirmpassword) {
             return res.status(400).json({ message: 'Passwords do not match' })
         }
-        await UserSchema.create({ username, password })
-        return res.status(201).json({ message: 'User has been created' })
+        const newuser = await new UserSchema({ username, password }).save()
+        return res.status(201).json({ message: 'User has been created', newuser })
     } catch (error) {
         return res.json(error)
     }
@@ -17,10 +17,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { username, password } = req.body
-        const user = await UserSchema.findOne({
-            where: { username, password },
-            attributes: ['id', 'username', 'password', 'role']
-        })
+        const user = await UserSchema.findOne({ username, password })
         if (user) {
             const tokenSession = genToken(user)
             return res.json({ user, tokenSession })

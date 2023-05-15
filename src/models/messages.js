@@ -1,21 +1,27 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js';
+import { Schema, model } from "mongoose";
 
-
-// TODO: fix message type!!!
-const MessageSchema = sequelize.define('messages', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    message: {
-        type: DataTypes.ARRAY(DataTypes.JSONB),
-        allowNull: false,
-        defaultValue: []
-    }
+const messageSchema = new Schema({
+    message: [{
+        send: {
+            type: String,
+            required: true
+        },
+        receive: {
+            type: String,
+            require: true
+        },
+        message: {
+            type: String,
+            require: true
+        },
+        time: {
+            type: Date,
+            default: Date.now()
+        }
+    }]
 }, {
-    freezeTableName: true
+    timestamps: false,
+    versionKey: false
 });
 
-export default MessageSchema;
+export default model('messages', messageSchema)

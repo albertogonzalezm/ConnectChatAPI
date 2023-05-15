@@ -1,4 +1,4 @@
-import { config } from "dotenv";
+/* import { config } from "dotenv";
 config();
 import { Sequelize } from "sequelize";
 
@@ -7,4 +7,4 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     dialect: 'postgres'
 });
 
-export default sequelize;
+export default sequelize; */

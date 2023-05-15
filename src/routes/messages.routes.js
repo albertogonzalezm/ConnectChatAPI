@@ -1,6 +1,8 @@
 import { Router } from "express";
-import { newMessage } from "../controllers/message.controller";
+import { newMessage } from "../controllers/message.controller.js";
 
-const router = Router()
+const router = Router();
 
-router.post('/newmessage', newMessage)
+router.post('/new', newMessage);
+
+export default router;
