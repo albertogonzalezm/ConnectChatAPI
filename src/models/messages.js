@@ -18,10 +18,11 @@ const messageSchema = new Schema({
             type: Date,
             default: Date.now()
         }
-    }]
+    }],
+    usersId: [String]
 }, {
     timestamps: false,
-    versionKey: false
+    versionKey: false,
 });
 
 export default model('messages', messageSchema)
