@@ -1,20 +1,19 @@
-import { reverse } from "dns";
 import MessageSchema from "../models/messages.js";
 
 // 64626fedb79fd64e1a432eda
 // 6462739c6408ca0fbd4ab55a
 
 export const newMessage = async (req, res) => {
-    try {
-        const send = '6462739c6408ca0fbd4ab55a';
-        const receive = 'h';
-        const message = 'muy bien'
-        const chat = await MessageSchema.find({ usersId: send && receive })
+    const local = '6465604718807a8147d94466';
+    const receive = '6465604f18807a8147d94468';
+    // const message = req.body.message
+    const message = 'hola usuario2'
 
-        // const msg = await new MessageSchema({ message: [{ send, receive, message }], usersId: [send, receive] }).save()
+    const x = await MessageSchema.findOneAndUpdate({ usersId: [local, receive] }, { $push: { message: { send: local, receive, message } } })
 
-        res.send(msg)
-    } catch (error) {
-        return res.json({ error })
+    if (!x) {
+        await new MessageSchema({ message: { send: local, receive, message }, usersId: [local, receive] }).save()
     }
+
+    res.status(200).send({ done: 'Mensaje enviado' });
 }
