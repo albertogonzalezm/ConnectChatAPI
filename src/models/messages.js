@@ -2,11 +2,11 @@ import { Schema, model } from "mongoose";
 
 const messageSchema = new Schema({
     message: [{
-        send: {
+        sender: {
             type: String,
             required: true
         },
-        receive: {
+        receiver: {
             type: String,
             require: true
         },
