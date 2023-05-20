@@ -21,10 +21,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + 'public/index.html')
-})
-
 app.use('/auth', authRoutes);
 app.use('/msg', messagesRoutes);
 app.use('/', userRoutes);
