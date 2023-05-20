@@ -1,6 +1,6 @@
 # messageApp (Backend)
 
-**messageApp** es una aplicación web de mensajería en tiempo real entre usuarios, construida con Node.js, Express.js y Socket.IO en el backend. Este código se enfoca únicamente en la implementación del backend de la aplicación.
+**messageApp** es una aplicación web de mensajería en tiempo real entre usuarios, construida con Node.js, Express.js y Socket.IO en el backend, ademas cuenta con una base de datos MongoDB para almacenar la informacion de los usuarios y mantener las conversaciones. Este código se enfoca únicamente en la implementación del backend de la aplicación.
 
 ## Empezando
 
